@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:quiz/questao.dart';
+import 'package:quiz/resultado.dart';
 import './questao.dart';
 import './resposta.dart';
 
@@ -39,23 +40,17 @@ class _PerguntasAppState extends State<PerguntasApp> {
 
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text("Quiz"),
-        ),
-        body: temPerguntaSelecionada
-            ? Column(
-                children: <Widget>[
-                  Questao(_perguntas[_perguntasSelecionada]["texto"]),
-                  ...respostas.map((t) => Resposta(t, _responder)).toList(),
-                ],
-              )
-            : Center(
-                child: Text(
-                  'PARA-BÉNS',
-                  style: TextStyle(fontSize: 28),
-                ),
-              ),
-      ),
+          appBar: AppBar(
+            title: Text("Quiz"),
+          ),
+          body: temPerguntaSelecionada
+              ? Column(
+                  children: <Widget>[
+                    Questao(_perguntas[_perguntasSelecionada]["texto"]),
+                    ...respostas.map((t) => Resposta(t, _responder)).toList(),
+                  ],
+                )
+              : Resultado()),
     );
   }
 }
